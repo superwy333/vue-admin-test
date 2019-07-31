@@ -25,6 +25,7 @@ const users = {
 const menuList = [
   {
     path: '/tab',
+    component: '/layout',
     children: [
       {
         path: 'index',
@@ -36,6 +37,7 @@ const menuList = [
   },
   {
     path: '/excel',
+    component: '/layout',
     redirect: '/excel/export-excel',
     name: 'Excel',
     meta: {

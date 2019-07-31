@@ -47,35 +47,40 @@ const mutations = {
   }
 }
 
+const map = {
+  //login: require('login/index').default // 同步的方式
+  layout: () => import('@/layout')      // 异步的方式
+}
+
+function mapComponent(component) {
+  return () => import('@' + component)
+}
+
 const actions = {
   generateRoutes({ commit, rootState }, roles) {
     return new Promise(resolve => {
-      console.log(rootState.user)
-      console.log(rootState.user.name)
-      console.log(rootState.user.roles)
-      console.log('.....>>>', rootState.user.userMenuList)
       let accessedRoutes
       if (roles.includes('test')) {
-        //console.log('>>>>>>>   ' + JSON.stringify(asyncRoutes))
         accessedRoutes = asyncRoutes || []
       } else {
         accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
         /**
          * 动态组装路由
          */
-          ///let aaa = state.user.userMenuList
-        // let userMenuList = rootState.user.userMenuList
-        // console.log('userMenuList', userMenuList)
-        // let accessedRoutesNew = []
-        // userMenuList.forEach(userMenu => {
-        //   let accessedRoutesItem = {}
-        //   accessedRoutesItem.path = userMenu.path
-        //   accessedRoutesItem.alwaysShow = true
-        //   accessedRoutesItem.component = () => import('@/layout')
-        //   let children = userMenu.children
-        //   accessedRoutesNew.push(accessedRoutesItem)
-        // })
-        // console.log('accessedRoutesNew', accessedRoutesNew)
+
+        let userMenuList = rootState.user.userMenuList // 从vuex中获取用户的menuList
+        console.log('userMenuList', userMenuList)
+        let accessedRoutesNew = []
+        userMenuList.forEach(userMenu => {
+          let accessedRoutesItem = {}
+          accessedRoutesItem.path = userMenu.path
+          accessedRoutesItem.alwaysShow = true
+          accessedRoutesItem.component = mapComponent(userMenu.component)
+          accessedRoutesItem.redirect = userMenu.redirect
+          let children = userMenu.children
+          accessedRoutesNew.push(accessedRoutesItem)
+        })
+        console.log('accessedRoutesNew', JSON.stringify(accessedRoutesNew))
         //
         // accessedRoutes = [
         //   {
