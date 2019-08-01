@@ -42,7 +42,9 @@ export const mapCompoent = {
   '/views/excel/merge-header': () => import('@/views/excel/merge-header'),
   'test1': () => import('@/views/luminousTest/test1/index'),
   'test2': () => import('@/views/luminousTest/test2/index'),
-  'test3': () => import('@/views/luminousTest/test3/index')
+  'test3': () => import('@/views/luminousTest/test3/index'),
+  'tableTest': () => import('@/views/luminousTest/tableTest/index'),
+  'dynamicTableTest1': () => import('@/views/luminousTest/dynamic-table-test1')
 }
 
 /**
@@ -51,6 +53,7 @@ export const mapCompoent = {
  * all roles can be accessed
  */
 export const constantRoutes = [
+  tableRouter,
   {
     path: '/redirect',
     component: Layout,

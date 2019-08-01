@@ -47,6 +47,18 @@ const menuList = [
         component: 'test3',
         name: 'test3',
         meta: { title: 'test3', icon: 'tab' }
+      },
+      {
+        path: 'table-test',
+        component: 'tableTest',
+        name: 'table-test',
+        meta: { title: 'table-test', icon: 'tab' }
+      },
+      {
+        path: 'dynamic-table-test1',
+        component: 'dynamicTableTest1',
+        name: 'dynamic-table-test1',
+        meta: { title: 'dynamic-table-test1', icon: 'tab' }
       }
     ]
 
