@@ -33,6 +33,18 @@ import nestedRouter from './modules/nested'
   }
  */
 
+export const mapCompoent = {
+  'tab': () => import('@/views/tab/index'),
+  '401': () => import('@/views/error-page/401'),
+  '404': () => import('@/views/error-page/404'),
+  '/views/excel/export-excel': () => import('@/views/excel/export-excel'),
+  '/views/excel/select-excel': () => import('@/views/excel/select-excel'),
+  '/views/excel/merge-header': () => import('@/views/excel/merge-header'),
+  'test1': () => import('@/views/luminousTest/test1/index'),
+  'test2': () => import('@/views/luminousTest/test2/index'),
+  'test3': () => import('@/views/luminousTest/test3/index')
+}
+
 /**
  * constantRoutes
  * a base page that does not have permission requirements
@@ -128,7 +140,7 @@ export const constantRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes_bak = [
+export const asyncRoutes = [
   {
     path: '/permission',
     component: Layout,
@@ -170,42 +182,7 @@ export const asyncRoutes_bak = [
       }
     ]
   },
-  {
-    path: '/wyTest',
-    component: Layout,
-    redirect: '/wyTest',
-    name: 'wyTest',
-    meta: {
-      title: 'wyTest',
-      icon: 'wyTest'
-    },
-    children: [
-      {
-        path: 'export-excel',
-        component: () => import('@/views/excel/export-excel'),
-        name: 'ExportExcel',
-        meta: { title: 'Export Excel' }
-      },
-      {
-        path: 'export-selected-excel',
-        component: () => import('@/views/excel/select-excel'),
-        name: 'SelectExcel',
-        meta: { title: 'Export Selected' }
-      },
-      {
-        path: 'export-merge-header',
-        component: () => import('@/views/excel/merge-header'),
-        name: 'MergeHeader',
-        meta: { title: 'Merge Header' }
-      },
-      {
-        path: 'upload-excel',
-        component: () => import('@/views/excel/upload-excel'),
-        name: 'UploadExcel',
-        meta: { title: 'Upload Excel' }
-      }
-    ]
-  },
+
   {
     path: '/icon',
     component: Layout,
@@ -420,84 +397,6 @@ export const asyncRoutes_bak = [
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
-]
-export const asyncRoutes = [
-  {
-    path: '/tab',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/tab/index'),
-        name: 'Tab',
-        meta: { title: 'Tab', icon: 'tab' }
-      }
-    ]
-  },
-
-  {
-    path: '/error',
-    component: Layout,
-    alwaysShow: true,
-    // redirect: 'noRedirect',
-    name: 'ErrorPages',
-    meta: {
-      title: 'Error Pages',
-      icon: '404',
-      roles: ['admin']
-    },
-    children: [
-      {
-        path: '401',
-        hidden: false,
-        component: () => import('@/views/error-page/401'),
-        name: 'Page401',
-        meta: { title: '401', noCache: true }
-      },
-      {
-        path: '404',
-        hidden: false,
-        component: () => import('@/views/error-page/404'),
-        name: 'Page404',
-        meta: { title: '404', noCache: true, roles: ['admin111'] }
-      }
-    ]
-  }, {
-    path: '/excel',
-    component: Layout,
-    redirect: '/excel/export-excel',
-    name: 'Excel',
-    meta: {
-      title: 'Excel',
-      icon: 'excel'
-    },
-    children: [
-      {
-        path: 'export-excel',
-        component: () => import('@/views/excel/export-excel'),
-        name: 'ExportExcel',
-        meta: { title: 'Export Excel' }
-      },
-      {
-        path: 'export-selected-excel',
-        component: () => import('@/views/excel/select-excel'),
-        name: 'SelectExcel',
-        meta: { title: 'Export Selected' }
-      },
-      {
-        path: 'export-merge-header',
-        component: () => import('@/views/excel/merge-header'),
-        name: 'MergeHeader',
-        meta: { title: 'Merge Header' }
-      },
-      {
-        path: 'upload-excel',
-        component: () => import('@/views/excel/upload-excel'),
-        name: 'UploadExcel',
-        meta: { title: 'Upload Excel' }
-      }
-    ]
-  }
 ]
 
 const createRouter = () => new Router({

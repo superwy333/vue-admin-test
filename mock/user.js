@@ -24,18 +24,76 @@ const users = {
 
 const menuList = [
   {
-    path: '/tab',
+    path: '/test',
+    hidden: false,
     component: '/layout',
+    alwaysShow: true,
+    meta: { title: 'test', icon: 'tab' },
+    children: [
+      {
+        path: 'test1',
+        component: 'test1',
+        name: 'test1',
+        meta: { title: 'test1', icon: 'tab' }
+      },
+      {
+        path: 'test2',
+        component: 'test2',
+        name: 'test2',
+        meta: { title: 'test2', icon: 'tab' }
+      },
+      {
+        path: 'test3',
+        component: 'test3',
+        name: 'test3',
+        meta: { title: 'test3', icon: 'tab' }
+      }
+    ]
+
+  },
+  {
+    path: '/tab',
+    hidden: false,
+    alwaysShow: true,
+    component: '/layout',
+    meta: { title: 'Tab', icon: 'tab' },
     children: [
       {
         path: 'index',
-        component: '/views/tab/index',
+        component: 'tab',
         name: 'Tab',
         meta: { title: 'Tab', icon: 'tab' }
       }
     ]
   },
+
   {
+    path: '/error',
+    component: '/layout',
+    alwaysShow: true,
+    // redirect: 'noRedirect',
+    name: 'ErrorPages',
+    meta: {
+      title: 'Error Pages',
+      icon: '404'
+    },
+    children: [
+      {
+        path: '401',
+        hidden: false,
+        component: '401',
+        name: '401',
+        meta: { title: '401', noCache: true }
+      },
+      {
+        path: '404',
+        hidden: false,
+        component: '404',
+        name: 'Page404',
+        meta: { title: '404', noCache: true }
+      }
+    ]
+  }, {
     path: '/excel',
     component: '/layout',
     redirect: '/excel/export-excel',
@@ -62,12 +120,6 @@ const menuList = [
         component: '/views/excel/merge-header',
         name: 'MergeHeader',
         meta: { title: 'Merge Header' }
-      },
-      {
-        path: 'upload-excel',
-        component: '/views/excel/upload-excel',
-        name: 'UploadExcel',
-        meta: { title: 'Upload Excel' }
       }
     ]
   }
@@ -93,29 +145,6 @@ export default [
       return {
         code: 20000,
         data: token
-      }
-    }
-  },
-
-  // get user menu
-  {
-    url: '/user/menu\.*',
-    type: 'get',
-    response: config => {
-      // const { token } = config.query
-      const info = menuList
-
-      // mock error
-      if (!info) {
-        return {
-          code: 50008,
-          message: '获取菜单失败'
-        }
-      }
-
-      return {
-        code: 20000,
-        data: info
       }
     }
   },
@@ -151,6 +180,29 @@ export default [
       return {
         code: 20000,
         data: 'success'
+      }
+    }
+  },
+
+  // get user menu
+  {
+    url: '/user/menu\.*',
+    type: 'get',
+    response: config => {
+      // const { token } = config.query
+      const info = menuList
+
+      // mock error
+      if (!info) {
+        return {
+          code: 50008,
+          message: '获取菜单失败'
+        }
+      }
+
+      return {
+        code: 20000,
+        data: info
       }
     }
   }
