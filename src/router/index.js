@@ -44,7 +44,10 @@ export const mapCompoent = {
   'test2': () => import('@/views/luminousTest/test2/index'),
   'test3': () => import('@/views/luminousTest/test3/index'),
   'tableTest': () => import('@/views/luminousTest/tableTest/index'),
-  'dynamicTableTest1': () => import('@/views/luminousTest/dynamic-table-test1')
+  'dynamicTableTest1': () => import('@/views/luminousTest/dynamic-table-test1'),
+
+  'myTaskList': () => import('@/views/luminousTest/ftoa/mytask-list')
+
 }
 
 /**

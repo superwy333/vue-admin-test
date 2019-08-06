@@ -59,6 +59,12 @@ const menuList = [
         component: 'dynamicTableTest1',
         name: 'dynamic-table-test1',
         meta: { title: 'dynamic-table-test1', icon: 'tab' }
+      },
+      {
+        path: 'mytask-list',
+        component: 'myTaskList',
+        name: 'mytask-list',
+        meta: { title: '任务列表', icon: 'tab' }
       }
     ]
 
