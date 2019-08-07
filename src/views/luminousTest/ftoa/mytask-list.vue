@@ -60,6 +60,7 @@
       highlight-current-row
       style="width: 100%;"
     >
+      <el-table-column v-if="false" prop="id" label="ID" width="180" />
       <el-table-column prop="taskNo" label="流水号" width="180">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleClickTaskNo">{{ row.taskNo }}</span>
@@ -75,31 +76,21 @@
       <el-table-column prop="currentNode" label="当前节点" width="180" />
       <el-table-column prop="currentAssignee" label="当前指派人" width="180" />
       <el-table-column prop="steps" label="流程轨迹" width="180">
-        <template>
+        <template slot-scope="{row}">
           <el-popover
             placement="top-start"
             width="450"
             trigger="click"
           >
             <div style="height: 200px; overflow: auto">
-              <el-steps direction="vertical">
-                <el-step title="2019-08-06 15:50:23" status="finish" :description="description" />
-                <el-step title="2019-08-06 15:50:23" status="finish" />
-                <el-step title="2019-08-06 15:50:23" description="" />
-                <el-step title="2019-08-06 15:50:23" description="" />
-                <el-step title="2019-08-06 15:50:23" description="" />
-                <el-step title="2019-08-06 15:50:23" description="" />
-                <el-step title="2019-08-06 15:50:23" description="" />
-                <el-step title="2019-08-06 15:50:23" description="" />
-                <el-step title="2019-08-06 15:50:23" description="" />
-              </el-steps>
+              <OaTaskSteps :oa-task-id="row.id" />
             </div>
             <el-button slot="reference" size="mini">查看</el-button>
           </el-popover>
         </template>
       </el-table-column>
       <el-table-column prop="applyTime" label="填报时间" width="180" />
-      <el-table-column prop="operation" label="操作" align="center">
+      <el-table-column prop="operation" label="操作" align="center" fixed="right" width="180">
         <template slot-scope="{row}">
           <el-dropdown trigger="click">
             <el-button type="primary" size="small">
@@ -130,9 +121,11 @@
 import { fetchOaTaskList } from '@/api/oaTask'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import waves from '@/directive/waves' // waves directive
+import OaTaskSteps from '@/views/luminousTest/ftoa/oatask-steps'
+
 export default {
   name: 'OaTaskList',
-  components: { Pagination },
+  components: { OaTaskSteps, Pagination },
   directives: { waves },
   data() {
     return {
