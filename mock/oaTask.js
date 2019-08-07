@@ -13,7 +13,7 @@ const oaTaskList = {
     },
     {
       id: 1,
-      taskNo: 'FT0001',
+      taskNo: 'FT0002',
       taskType: 'bx',
       taskRemarks: 'mock测试',
       taskState: 1,
@@ -24,7 +24,7 @@ const oaTaskList = {
     },
     {
       id: 1,
-      taskNo: 'FT0001',
+      taskNo: 'FT0003',
       taskType: 'bx',
       taskRemarks: 'mock测试',
       taskState: 3,
@@ -35,7 +35,7 @@ const oaTaskList = {
     },
     {
       id: 1,
-      taskNo: 'FT0001',
+      taskNo: 'FT0004',
       taskType: 'bx',
       taskRemarks: 'mock测试',
       taskState: 2,
@@ -46,7 +46,7 @@ const oaTaskList = {
     },
     {
       id: 1,
-      taskNo: 'FT0001',
+      taskNo: 'FT0005',
       taskType: 'bx',
       taskRemarks: 'mock测试',
       taskState: 2,
@@ -57,7 +57,7 @@ const oaTaskList = {
     },
     {
       id: 1,
-      taskNo: 'FT0001',
+      taskNo: 'FT0006',
       taskType: 'bx',
       taskRemarks: 'mock测试',
       taskState: 1,
@@ -68,7 +68,7 @@ const oaTaskList = {
     },
     {
       id: 1,
-      taskNo: 'FT0001',
+      taskNo: 'FT0007',
       taskType: 'bx',
       taskRemarks: 'mock测试',
       taskState: 3,
@@ -79,7 +79,7 @@ const oaTaskList = {
     },
     {
       id: 1,
-      taskNo: 'FT0001',
+      taskNo: 'FT0008',
       taskType: 'bx',
       taskRemarks: 'mock测试',
       taskState: 3,
@@ -90,7 +90,7 @@ const oaTaskList = {
     },
     {
       id: 1,
-      taskNo: 'FT0001',
+      taskNo: 'FT0009',
       taskType: 'bx',
       taskRemarks: 'mock测试',
       taskState: 1,
@@ -101,7 +101,7 @@ const oaTaskList = {
     },
     {
       id: 1,
-      taskNo: 'FT0001',
+      taskNo: 'FT0010',
       taskType: 'bx',
       taskRemarks: 'mock测试',
       taskState: 2,

@@ -59,59 +59,49 @@
       fit
       highlight-current-row
       style="width: 100%;"
-      @sort-change="sortChange"
     >
-      <el-table-column
-        prop="taskNo"
-        label="流水号"
-        width="180"
-      />
-      <el-table-column
-        prop="taskType"
-        label="任务类型"
-        width="180"
-      />
-      <el-table-column
-        prop="taskRemarks"
-        label="申请说明"
-        width="180"
-      />
-      <el-table-column
-        prop="taskState"
-        label="任务状态"
-        width="180"
-      >
+      <el-table-column prop="taskNo" label="流水号" width="180">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleClickTaskNo">{{ row.taskNo }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column prop="taskType" label="任务类型" width="180" />
+      <el-table-column prop="taskRemarks" label="申请说明" width="180" />
+      <el-table-column prop="taskState" label="任务状态" width="180">
         <template slot-scope="{row}">
           {{ taskStateName(row.taskState) }}
         </template>
       </el-table-column>
-      <el-table-column
-        prop="currentNode"
-        label="当前节点"
-        width="180"
-      />
-      <el-table-column
-        prop="currentAssignee"
-        label="当前指派人"
-        width="180"
-      />
-      <el-table-column
-        prop="steps"
-        label="步骤"
-        width="180"
-      />
-      <el-table-column
-        prop="applyTime"
-        label="填报时间"
-        width="180"
-      />
-      <el-table-column
-        prop="operation"
-        label="操作"
-        align="center"
-      >
+      <el-table-column prop="currentNode" label="当前节点" width="180" />
+      <el-table-column prop="currentAssignee" label="当前指派人" width="180" />
+      <el-table-column prop="steps" label="流程轨迹" width="180">
+        <template>
+          <el-popover
+            placement="top-start"
+            width="450"
+            trigger="click"
+          >
+            <div style="height: 200px; overflow: auto">
+              <el-steps direction="vertical">
+                <el-step title="2019-08-06 15:50:23" status="finish" :description="description" />
+                <el-step title="2019-08-06 15:50:23" status="finish" />
+                <el-step title="2019-08-06 15:50:23" description="" />
+                <el-step title="2019-08-06 15:50:23" description="" />
+                <el-step title="2019-08-06 15:50:23" description="" />
+                <el-step title="2019-08-06 15:50:23" description="" />
+                <el-step title="2019-08-06 15:50:23" description="" />
+                <el-step title="2019-08-06 15:50:23" description="" />
+                <el-step title="2019-08-06 15:50:23" description="" />
+              </el-steps>
+            </div>
+            <el-button slot="reference" size="mini">查看</el-button>
+          </el-popover>
+        </template>
+      </el-table-column>
+      <el-table-column prop="applyTime" label="填报时间" width="180" />
+      <el-table-column prop="operation" label="操作" align="center">
         <template slot-scope="{row}">
-          <el-dropdown>
+          <el-dropdown trigger="click">
             <el-button type="primary" size="small">
               操作<i class="el-icon-arrow-down el-icon--right" />
             </el-button>
@@ -120,9 +110,7 @@
               <el-dropdown-item @click.native="start(row)">发起</el-dropdown-item>
               <el-dropdown-item @click.native="callBack(row)">撤销</el-dropdown-item>
             </el-dropdown-menu>
-
           </el-dropdown>
-
         </template>
       </el-table-column>
     </el-table>
@@ -148,6 +136,7 @@ export default {
   directives: { waves },
   data() {
     return {
+      description: '操作人：aaa\n\n\n\n\n\n\n\n\n状态：发起',
       tableKey: 'myTaskList',
       listLoading: false,
       list: [],
@@ -216,11 +205,17 @@ export default {
     this.getList()
   },
   methods: {
-    handleCommand(command) {
-      this.$message('点击 ' + command)
+    handleClickTaskNo() {
+      alert('handleClickTaskNo')
     },
     details(row) {
       alert('details...' + row.taskNo)
+    },
+    start(row) {
+      alert('start...' + row.taskNo)
+    },
+    callBack(row) {
+      alert('callBack...' + row.taskNo)
     },
     handleFilter() {
       this.listQuery.page = 1
@@ -233,17 +228,6 @@ export default {
         this.total = response.data.total
         this.listLoading = false
       })
-    },
-    sortChange(data) {
-
-    },
-    getSortClass: function(key) {
-      const sort = this.listQuery.sort
-      return sort === `+${key}`
-        ? 'ascending'
-        : sort === `-${key}`
-          ? 'descending'
-          : ''
     }
   }
 
